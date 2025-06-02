@@ -14,6 +14,7 @@ import InventoryContext from './InventoryContext';
 import { closeContextMenu } from '../../store/contextMenu';
 import Fade from '../utils/transitions/Fade';
 
+
 const Inventory: React.FC = () => {
   const [inventoryVisible, setInventoryVisible] = useState(false);
   const dispatch = useAppDispatch();
@@ -40,15 +41,38 @@ const Inventory: React.FC = () => {
     dispatch(setAdditionalMetadata(data));
   });
 
+
   return (
     <>
       <Fade in={inventoryVisible}>
-        <div className="inventory-wrapper">
-          <LeftInventory />
-          <InventoryControl />
-          <RightInventory />
-          <Tooltip />
-          <InventoryContext />
+        <div className="inventory-wrapper-logo-parent">
+          <div className="inventory-wrapper">
+            <div className="inventory-wrapper-parent-end">
+              <div style={{ width: '180px' }}>
+                <div
+                  style={{
+                    backgroundColor: `rgba(29, 35, 39, 0.77)`,
+                    padding: '14px',
+                    borderRadius: '2px',
+                  }}
+                >
+                  <InventoryControl />
+                </div>
+              </div>
+              <div style={{ backgroundColor: `rgba(29, 35, 39, 0.77)`, padding: '14px', borderRadius: '2px' }}>
+                <LeftInventory />
+              </div>
+            </div>
+            <div className="inventory-wrapper-parent-start">
+              
+              <div style={{ backgroundColor: `rgba(29, 35, 39, 0.77)`, padding: '14px', borderRadius: '2px' }}>
+                <RightInventory />
+              </div>
+            </div>
+            <Tooltip />
+            <InventoryContext />
+          </div>
+          {/* </div> */}
         </div>
       </Fade>
       <InventoryHotbar />

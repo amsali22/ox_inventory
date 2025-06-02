@@ -37,10 +37,20 @@ const InventoryHotbar: React.FC = () => {
           >
             {isSlotWithItem(item) && (
               <div className="item-slot-wrapper">
-                <div className="hotbar-slot-header-wrapper">
-                  <div className="inventory-slot-number">{item.slot}</div>
-                  <div className="item-slot-info-wrapper">
-                    <p>
+                <div style={{ position: 'relative' }}>
+                  <div className="inventory-slot-label-box">
+                    <div className="inventory-slot-label-text">
+                      {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
+                    </div>
+                  </div>
+                  <div style={{ position: 'absolute', top: 0, right: 0 }}>
+                    <div className="inventory-slot-number">{item.slot}</div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', columnGap: '2px' }}>
+                  <div className="hotbar-slot-header-wrapper">
+                    <div className="inventory-slot-label-weight-text">
                       {item.weight > 0
                         ? item.weight >= 1000
                           ? `${(item.weight / 1000).toLocaleString('en-us', {
@@ -50,16 +60,13 @@ const InventoryHotbar: React.FC = () => {
                               minimumFractionDigits: 0,
                             })}g `
                         : ''}
-                    </p>
-                    <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
-                  </div>
-                </div>
-                <div>
-                  {item?.durability !== undefined && <WeightBar percent={item.durability} durability />}
-                  <div className="inventory-slot-label-box">
-                    <div className="inventory-slot-label-text">
-                      {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
                     </div>
+                    <div className="inventory-slot-label-weight-text">
+                      {item.count ? item.count.toLocaleString('en-us') + `x` : ''}
+                    </div>
+                  </div>
+                  <div style={{ paddingTop: '0.5px' }}>
+                    {item?.durability !== undefined && <WeightBar percent={item.durability} durability />}
                   </div>
                 </div>
               </div>
