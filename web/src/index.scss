@@ -549,10 +549,10 @@ button:active {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  gap: 4px;
+  gap: 2px;
   position: absolute;
-  bottom: 17vh;
-  left: 5%;
+  bottom: 10vh;
+  left: 50%;
   width: 100%;
   margin-left: calc(50% - calc($gridSize/2));
   transform: translate(-50%);
